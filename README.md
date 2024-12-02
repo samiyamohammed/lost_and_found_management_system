@@ -36,4 +36,4 @@ To set up the project locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone [<repository-url>](https://github.com/timar21/DS-group3.git)
