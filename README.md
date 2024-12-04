@@ -29,7 +29,3 @@ The application consists of three main microservices:
 - **PostgreSQL and MySQL**: For persistent data storage.
 - **RabbitMQ**: For inter-service communication.
 - **Celery**: For handling asynchronous tasks.
-
-## Getting Started
-
-To set up the project locally, follow these steps:
