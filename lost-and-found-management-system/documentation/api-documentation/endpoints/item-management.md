@@ -1,16 +1,20 @@
-#Item Management Service
-API Purpose:
+# Item Management Service
+
+## API Purpose:
 Manages lost and found items, including reporting, searching, and updating item status.
 
-##Endpoints:
+---
 
-###Report Lost or Found Item
+## Endpoints:
 
-**Endpoint:** POST /items/report
+### 1. Report Lost or Found Item
+
+**Endpoint:** `POST /items/report`
+
 **Description:** Reports a lost or found item.
-**Request Body:**
-json
 
+**Request Body:**
+```json
 {
   "name": "Wallet",
   "description": "Black leather wallet, contains ID and credit cards",
@@ -18,81 +22,98 @@ json
   "status": "lost",
   "reported_by": "uuid-1234"
 }
+```
+
 **Response:**
 
-Success (201):
-json
-
-{
-  "id": "item-uuid-5678",
-  "name": "Wallet",
-  "status": "lost",
-  "reported_by": "uuid-1234",
-  "created_at": "2024-12-09T00:00:00Z"
-}
-Failure (400):
-json
-
-{
-  "error": "Invalid item data"
-}
-
-
-####Search Items
-
-**Endpoint:** GET /items
-**Description:** Allows users to search for lost or found items with filters like category, status, etc.
-**Request Params:**
-status (optional): Filter by item status (e.g., "lost", "found").
-category (optional): Filter by category.
-**Response:**
-Success (200):
-json
-
-[
+- **Success (201):**
+  ```json
   {
     "id": "item-uuid-5678",
     "name": "Wallet",
-    "description": "Black leather wallet, contains ID and credit cards",
     "status": "lost",
     "reported_by": "uuid-1234",
-    "found_by": null,
     "created_at": "2024-12-09T00:00:00Z"
   }
-]
-Failure (400):
-json
+  ```
 
-{
-  "error": "Invalid search parameters"
-}
+- **Failure (400):**
+  ```json
+  {
+    "error": "Invalid item data"
+  }
+  ```
 
+---
 
-####Update Item Status
+### 2. Search Items
 
-**Endpoint:** PUT /items/{item_id}
+**Endpoint:** `GET /items`
+
+**Description:** Allows users to search for lost or found items with filters like category, status, etc.
+
+**Request Params:**
+- `status` (optional): Filter by item status (e.g., "lost", "found").
+- `category` (optional): Filter by category.
+
+**Response:**
+
+- **Success (200):**
+  ```json
+  [
+    {
+      "id": "item-uuid-5678",
+      "name": "Wallet",
+      "description": "Black leather wallet, contains ID and credit cards",
+      "status": "lost",
+      "reported_by": "uuid-1234",
+      "found_by": null,
+      "created_at": "2024-12-09T00:00:00Z"
+    }
+  ]
+  ```
+
+- **Failure (400):**
+  ```json
+  {
+    "error": "Invalid search parameters"
+  }
+  ```
+
+---
+
+### 3. Update Item Status
+
+**Endpoint:** `PUT /items/{item_id}`
+
 **Description:** Update the status of a reported item (e.g., from "lost" to "found").
-**Request Params:** {item_id} (path parameter)
+
+**Request Params:** `{item_id}` (path parameter)
+
 **Request Body:**
-json
+```json
 {
   "status": "found",
   "found_by": "uuid-5678"
 }
+```
+
 **Response:**
-Success (200):
-json
 
-{
-  "id": "item-uuid-5678",
-  "name": "Wallet",
-  "status": "found",
-  "found_by": "uuid-5678",
-  "updated_at": "2024-12-09T01:00:00Z"
-}
-Failure (404):
-json
+- **Success (200):**
+  ```json
+  {
+    "id": "item-uuid-5678",
+    "name": "Wallet",
+    "status": "found",
+    "found_by": "uuid-5678",
+    "updated_at": "2024-12-09T01:00:00Z"
+  }
+  ```
 
-{
-  "error": "Item not found"
-}
+- **Failure (404):**
+  ```json
+  {
+    "error": "Item not found"
+  }
+  
