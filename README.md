@@ -28,4 +28,3 @@ The application consists of three main microservices:
 - **Django REST Framework**: For building the APIs.
 - **PostgreSQL and MySQL**: For persistent data storage.
 - **RabbitMQ**: For inter-service communication.
-- **Celery**: For handling asynchronous tasks.
