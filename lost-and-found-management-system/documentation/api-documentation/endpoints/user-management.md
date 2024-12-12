@@ -1,24 +1,28 @@
-#User Management Service
-**API Purpose:**
-Handles user registration, login, and profile management.
+markdown
 
-###Endpoints:
-####User Registration
+Copy
+# User Management Service Specifications
 
-**Endpoint:** POST /users/register
-**Description:** Registers a new user.
-**Request Body:**
-json
+## Objective
+To handle user registration, login, and profile management.
 
-{
-  "name": "John Doe",
-  "email": "john.doe@example.com",
-  "password": "securepassword"
-}
-**Response:**
+## Endpoints
+
+### User Registration
+- **Endpoint:** `POST /users/register`
+- **Description:** Registers a new user.
+- **Request Body:**
+  ```json
+  {
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "password": "securepassword"
+  }
+Response:
 Success (201):
 json
 
+Copy
 {
   "id": "uuid-1234",
   "name": "John Doe",
@@ -28,45 +32,45 @@ json
 Failure (400):
 json
 
+Copy
 {
   "error": "Email is already in use"
 }
-
-####User Login
-
-**Endpoint**: POST /users/login
-**Description:** Authenticates a user and returns a JWT token.
-**Request Body:**
+User Login
+Endpoint: POST /users/login
+Description: Authenticates a user and returns a JWT token.
+Request Body:
 json
 
+Copy
 {
   "email": "john.doe@example.com",
   "password": "securepassword"
 }
-**Response:**
+Response:
 Success (200):
 json
 
+Copy
 {
   "token": "jwt-token-abc123"
 }
 Failure (401):
 json
 
+Copy
 {
   "error": "Invalid credentials"
 }
-
-
-####Get User Profile
-
-**Endpoint:** GET /users/{user_id}
-**Description:** Fetches a user's profile by their unique ID.
-**Request Params:** {user_id} (path parameter)
-**Response:**
+Get User Profile
+Endpoint: GET /users/{user_id}
+Description: Fetches a user's profile by their unique ID.
+Request Params: {user_id} (path parameter)
+Response:
 Success (200):
 json
 
+Copy
 {
   "id": "uuid-1234",
   "name": "John Doe",
@@ -77,6 +81,12 @@ json
 Failure (404):
 json
 
+Copy
 {
   "error": "User not found"
 }
+Data Formats
+All requests and responses will use JSON format.
+
+Error Handling
+Errors will be communicated with appropriate HTTP status codes and descriptive messages.
