@@ -1,6 +1,4 @@
-markdown
 
-Copy
 # User Management Service Specifications
 
 ## Objective
