@@ -1,81 +1,104 @@
-#User Management Service
-API Purpose:
+# User Management Service
+
+## API Purpose:
 Handles user registration, login, and profile management.
 
-###Endpoints:
-####User Registration
+---
 
-Endpoint: POST /users/register
-Description: Registers a new user.
-Request Body:
-json
+## Endpoints:
 
+### 1. User Registration
+
+**Endpoint:** `POST /users/register`
+
+**Description:** Registers a new user.
+
+**Request Body:**
+```json
 {
-"name": "John Doe",
-"email": "john.doe@example.com",
-"password": "securepassword"
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "password": "securepassword"
 }
-Response:
-Success (201):
-json
+```
 
+**Response:**
+
+- **Success (201):**
+  ```json
+  {
+    "id": "uuid-1234",
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "message": "User created successfully"
+  }
+  ```
+
+- **Failure (400):**
+  ```json
+  {
+    "error": "Email is already in use"
+  }
+  ```
+
+---
+
+### 2. User Login
+
+**Endpoint:** `POST /users/login`
+
+**Description:** Authenticates a user and returns a JWT token.
+
+**Request Body:**
+```json
 {
-"id": "uuid-1234",
-"name": "John Doe",
-"email": "john.doe@example.com",
-"message": "User created successfully"
+  "email": "john.doe@example.com",
+  "password": "securepassword"
 }
-Failure (400):
-json
+```
 
-{
-"error": "Email is already in use"
-}
+**Response:**
 
-####User Login
+- **Success (200):**
+  ```json
+  {
+    "token": "jwt-token-abc123"
+  }
+  ```
 
-Endpoint: POST /users/login
-Description: Authenticates a user and returns a JWT token.
-Request Body:
-json
+- **Failure (401):**
+  ```json
+  {
+    "error": "Invalid credentials"
+  }
+  ```
 
-{
-"email": "john.doe@example.com",
-"password": "securepassword"
-}
-Response:
-Success (200):
-json
+---
 
-{
-"token": "jwt-token-abc123"
-}
-Failure (401):
-json
+### 3. Get User Profile
 
-{
-"error": "Invalid credentials"
-}
+**Endpoint:** `GET /users/{user_id}`
 
-####Get User Profile
+**Description:** Fetches a user's profile by their unique ID.
 
-Endpoint: GET /users/{user_id}
-Description: Fetches a user's profile by their unique ID.
-Request Params: {user_id} (path parameter)
-Response:
-Success (200):
-json
+**Request Params:** `{user_id}` (path parameter)
 
-{
-"id": "uuid-1234",
-"name": "John Doe",
-"email": "john.doe@example.com",
-"role": "user",
-"created_at": "2024-01-01T00:00:00Z"
-}
-Failure (404):
-json
+**Response:**
 
-{
-"error": "User not found"
-}
+- **Success (200):**
+  ```json
+  {
+    "id": "uuid-1234",
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "role": "user",
+    "created_at": "2024-01-01T00:00:00Z"
+  }
+  ```
+
+- **Failure (404):**
+  ```json
+  {
+    "error": "User not found"
+  }
+  
