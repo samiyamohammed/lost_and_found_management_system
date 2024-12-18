@@ -1,4 +1,4 @@
-# Lost and Found Management System
+# Lost and Found Management system
 
 ## Introduction
 
