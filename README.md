@@ -23,8 +23,8 @@ The application consists of three main microservices:
 2. **Item Service**: Handles the management of lost and found items, including reporting, searching, and updating item statuses.
 3. **Notification Service**: Sends notifications to users regarding items that match their search criteria or updates on reported items.
 ## Microservices Architecture
-![microservice architecture](microservice.jpg)
 
+<img src="microservice.jpg" alt="Example Image" width="400"/>
 ## Technologies Used
 
 - **Django REST Framework**: For building the APIs.
