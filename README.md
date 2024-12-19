@@ -32,6 +32,7 @@ The application consists of three main microservices:
 - # Microservices Overview
 
 ---
+---
 
 ## **1. User Management Service**
 
