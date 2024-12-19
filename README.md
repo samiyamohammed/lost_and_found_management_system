@@ -22,6 +22,8 @@ The application consists of three main microservices:
 1. **User Service**: Manages user accounts, authentication, and user profiles.
 2. **Item Service**: Handles the management of lost and found items, including reporting, searching, and updating item statuses.
 3. **Notification Service**: Sends notifications to users regarding items that match their search criteria or updates on reported items.
+## Microservices Architecture
+![microservice architecture](microservice.jpg)
 
 ## Technologies Used
 
