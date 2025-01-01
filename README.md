@@ -113,4 +113,87 @@ The application consists of three main microservices:
 3. Use a persistent database (e.g., SQLite, PostgreSQL) for real-world scenarios.  
 4. Consider inter-service communication using RESTful APIs or message brokers (e.g., RabbitMQ).  
 
-
+**Specifications:**
+---
+<table>
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Micro-service</th>
+      <th>Responsibilities</th>
+      <th>Key Features</th>
+      <th>Database Entities</th>
+      <th>APIs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>User Management Service (Port 8000)</td>
+      <td>
+        - Manage user registration and authentication.<br>
+        - Handle user profile updates.<br>
+        - Provide secure JWT-based authentication.
+      </td>
+      <td>
+        - CRUD operations for user accounts.<br>
+        - JWT token generation for authentication.<br>
+        - Profile management.
+      </td>
+      <td>Users</td>
+      <td>
+        <ul>
+          <li>POST /users/register: Register a new user.</li>
+          <li>POST /users/login: Login user.</li>
+          <li>GET /users/profile: Retrieve user profile.</li>
+          <li>PUT /users/profile: Update user profile.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Item Management Service (Port 8001)</td>
+      <td>
+        - Manage lost and found item records.<br>
+        - Allow search and filtering of items.<br>
+        - Match lost items with found items.
+      </td>
+      <td>
+        - CRUD operations for items.<br>
+        - Filtering by item type, date, and location.<br>
+        - Matching logic for lost and found items.
+      </td>
+      <td>Items, ItemCategories</td>
+      <td>
+        <ul>
+          <li>POST /items: Report a new lost or found item.</li>
+          <li>GET /items/id: Retrieve item details.</li>
+          <li>PUT /items/id: Update item information.</li>
+          <li>DELETE /items/id: Delete an item.</li>
+          <li>GET /items/search?type=lost&location=city: Search for items by type and location.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Notification Service (Port 8002)</td>
+      <td>
+        - Handle notifications for item matches.<br>
+        - Send email or SMS alerts to users.
+      </td>
+      <td>
+        - Asynchronous notifications for matched items.<br>
+        - Integration with external services (e.g., email/SMS).
+      </td>
+      <td>Notifications, UserNotifications</td>
+      <td>
+        <ul>
+          <li>POST /notifications/send: Send notification.</li>
+          <li>GET /notifications/user/id: Retrieve user notifications.</li>
+          <li>DELETE /notifications/id: Clear a notification.</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+---
