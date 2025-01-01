@@ -196,4 +196,3 @@ The application consists of three main microservices:
     </tr>
   </tbody>
 </table>
----
