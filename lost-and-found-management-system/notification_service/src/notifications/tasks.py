@@ -17,10 +17,16 @@
     
 from celery import shared_task
 from django.core.mail import send_mail
+from django.conf import settings 
+
 
 @shared_task
 def send_notification(data):
-    user_email = data.get('user_email')  # Extracted dynamically from User Service
+    if not settings.configured:
+        settings.configure()  
+    print("send_notification task called with data:", data)
+    
+    user_email = data.get('user_email')  
     subject = data.get('subject')
     message = data.get('message')
     
@@ -28,10 +34,14 @@ def send_notification(data):
         print("No email provided. Skipping notification.")
         return
     
-    send_mail(
-        subject,
-        message,
-        'no-reply@lostfound.com',  # Use a generic sender email
-        [user_email],
-        fail_silently=False,
-    )
+    try:
+        send_mail(
+            subject,
+            message,
+            settings.DEFAULT_FROM_EMAIL,
+            [user_email],
+            fail_silently=False,
+        )
+        print("Email sent successfully to:", user_email)
+    except Exception as e:
+        print("Failed to send email. Error:", e)

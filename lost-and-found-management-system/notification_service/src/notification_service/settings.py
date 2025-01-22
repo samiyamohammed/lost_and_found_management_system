@@ -23,11 +23,12 @@ CELERY_TASK_SERIALIZER = 'json'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.solome.getachew@aastustudent.edu.et'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'solome'
-EMAIL_HOST_PASSWORD = '12345678'
+EMAIL_HOST_USER = "samiyaseid87@gmail.com"
+EMAIL_HOST_PASSWORD = "samiyaseid87@gmail.com"
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER 
 
 ALLOWED_HOSTS = ['*']  # for adding host names
 DEBUG = True
