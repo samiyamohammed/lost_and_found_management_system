@@ -179,19 +179,15 @@ The application consists of three main microservices:
       <td>Notification Service (Port 8002)</td>
       <td>
         - Handle notifications for item matches.<br>
-        - Send email or SMS alerts to users.
+        - Send email alerts to users.
       </td>
       <td>
         - Asynchronous notifications for matched items.<br>
-        - Integration with external services (e.g., email/SMS).
+        - Integration with external services (e.g., email).
       </td>
       <td>Notifications, UserNotifications</td>
       <td>
-        <ul>
-          <li>POST /notifications/send: Send notification.</li>
-          <li>GET /notifications/user/id: Retrieve user notifications.</li>
-          <li>DELETE /notifications/id: Clear a notification.</li>
-        </ul>
+        
       </td>
     </tr>
   </tbody>
