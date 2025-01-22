@@ -19,16 +19,19 @@ def match_items():
                 }
                 print(f"Debug: Message to be sent: {message}")  # Debugging statement
                 publish_message('notifications_queue', message)
-
+@shared_task
 def publish_message(queue_name, message):
     connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
     channel = connection.channel()
+
+    # Declare exchange and queue
+    channel.exchange_declare(exchange='lost_found_exchange', exchange_type='direct', durable=True)
     channel.queue_declare(queue=queue_name, durable=True)
+
     try:
         json_message = json.dumps(message)
-        print(f"Debug: JSON message: {json_message}")  # Debugging statement
         channel.basic_publish(
-            exchange='',
+            exchange='lost_found_exchange',
             routing_key=queue_name,
             body=json_message,
             properties=pika.BasicProperties(delivery_mode=2),
@@ -38,6 +41,7 @@ def publish_message(queue_name, message):
         print(f"Error serializing message: {e}")
     finally:
         connection.close()
+
 
 @shared_task
 def validate_user_id(user_id):

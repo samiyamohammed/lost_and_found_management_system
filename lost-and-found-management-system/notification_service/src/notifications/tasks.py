@@ -6,7 +6,7 @@ def send_notification(data):
     user_email = data.get('user_email')
     subject = data.get('subject')
     message = data.get('message')
-
+    
     send_mail(
         subject,
         message,
@@ -14,3 +14,4 @@ def send_notification(data):
         [user_email],
         fail_silently=False,
     )
+    

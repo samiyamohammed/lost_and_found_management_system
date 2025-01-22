@@ -50,7 +50,9 @@ STATICFILES_DIRS = [
 STATIC_ROOT = BASE_DIR / "staticfiles"
 # Celery configurations
 # Celery configurations
-CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672/'  # RabbitMQ
+# CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672/'
+CELERY_BROKER_URL = 'amqp://localhost'  # RabbitMQ broker URL
+
 CELERY_ACCEPT_CONTENT = ['json']  # Acceptable content types
 CELERY_TASK_SERIALIZER = 'json'   # Serialize tasks as JSON
 CELERY_RESULT_BACKEND = 'django-db'  # Store results in Django database
