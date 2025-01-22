@@ -184,9 +184,7 @@ The application consists of three main microservices:
       <td>
         - Asynchronous notifications for matched items.<br>
         - Integration with external services (e.g., email).
-      </td>
-      <td>Notifications, UserNotifications</td>
-      <td>
+      
         
       
   </tbody>
