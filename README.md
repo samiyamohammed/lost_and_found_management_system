@@ -188,7 +188,6 @@ The application consists of three main microservices:
       <td>Notifications, UserNotifications</td>
       <td>
         
-      </td>
-    </tr>
+      
   </tbody>
 </table>
