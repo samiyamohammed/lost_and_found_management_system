@@ -14,7 +14,7 @@ class LostItemViewSet(viewsets.ModelViewSet):
         validation_result = validate_user_id(user_id)
         if validation_result == True:
             serializer.save()
-            match_items.delay()  # Trigger matching logic asynchronously
+            match_items()  # Trigger matching logic synchronously
         else:
             return Response({'error': validation_result.get('error', 'Invalid user ID')}, status=status.HTTP_400_BAD_REQUEST)
 class FoundItemViewSet(viewsets.ModelViewSet):
@@ -26,4 +26,4 @@ class FoundItemViewSet(viewsets.ModelViewSet):
         print("Before saving found item.")
         serializer.save()
         print("Found item saved. Triggering match_items task.")
-        match_items.delay()  # Trigger matching logic asynchronously
+        match_items() # Trigger matching logic synchronously

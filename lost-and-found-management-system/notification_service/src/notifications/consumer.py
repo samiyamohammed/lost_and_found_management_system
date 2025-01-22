@@ -26,7 +26,7 @@ import requests
 from tasks import send_notification
 
 # Configuration for the User Service
-USER_SERVICE_URL = "http://user-service-url/users/{user_id}/"
+USER_SERVICE_URL = "http://127.0.0.1:8000/users/users/{user_id}/"
 
 def callback(ch, method, properties, body):
     message = json.loads(body)
