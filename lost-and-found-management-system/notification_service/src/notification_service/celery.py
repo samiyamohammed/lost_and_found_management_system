@@ -10,7 +10,7 @@ app = Celery('notification_service')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
 # Discover tasks from installed apps
-app.autodiscover_tasks()
+app.autodiscover_tasks(['notification_service'])
 
 @app.task(bind=True)
 def debug_task(self):
