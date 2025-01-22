@@ -77,11 +77,19 @@ WSGI_APPLICATION = "user_management.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',  # MySQL backend
+        'NAME': 'users',         # Replace with your database name
+        'USER': 'root',            # Replace with your MySQL username
+        #'PASSWORD': 'your_mysql_password',    # Replace with your MySQL password
+        'HOST': '127.0.0.1',                  # Use 'localhost' or '127.0.0.1' for local server
+        'PORT': '3306',                       # Default MySQL port
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  # Optional for stricter SQL mode
+        },
     }
 }
+
 
 
 # Password validation

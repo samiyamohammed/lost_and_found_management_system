@@ -6,7 +6,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import User
 from .serializers import UserSerializer, RegisterSerializer
-from .rabbitmq_utils import publish_message  # Import RabbitMQ utility functions
+from .rabbitmq_utils import publish_message 
+from rest_framework.permissions import AllowAny
 
 class AssignRoleView(APIView):
     permission_classes = [IsAuthenticated]
@@ -113,6 +114,7 @@ class LoginView(APIView):
             return Response({
                 "status": "success",
                 "message": "Login successful",
+                "user_id": str(user.id),
                 "token": str(refresh.access_token)
             }, status=status.HTTP_200_OK)
 
@@ -120,8 +122,29 @@ class LoginView(APIView):
             return Response({"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
 
 
+# class UserProfileView(APIView):
+#     permission_classes = [IsAuthenticated]
+
+#     def get(self, request, user_id):
+#         try:
+#             user = User.objects.get(id=user_id)
+#             serializer = UserSerializer(user)
+
+#             # Publish a message to RabbitMQ
+#             message = {
+#                 "event": "view_profile",
+#                 "user_id": user.id,
+#                 "email": user.email,
+#             }
+#             publish_message("user_events", str(message))
+
+#             return Response(serializer.data, status=status.HTTP_200_OK)
+#         except User.DoesNotExist:
+#             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+from rest_framework.permissions import AllowAny
+
 class UserProfileView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]  # Make the view accessible without authentication
 
     def get(self, request, user_id):
         try:
@@ -139,3 +162,4 @@ class UserProfileView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         except User.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+        
