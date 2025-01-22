@@ -74,7 +74,15 @@ class UserManager(BaseUserManager):
         Create and return an admin user.
         """
         return self.create_user(email, name, password, role='admin')
-
+    def create_superuser(self, email, name, password=None):
+        """
+        Create and return a superuser with all admin permissions.
+        """
+        user = self.create_user(email, name, password, role='admin')
+        user.is_staff = True
+        user.is_superuser = True
+        user.save(using=self._db)
+        return user
 
 class User(AbstractBaseUser, PermissionsMixin):
     """

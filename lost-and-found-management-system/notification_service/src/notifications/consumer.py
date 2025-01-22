@@ -37,7 +37,7 @@ def callback(ch, method, properties, body):
         print("No user_id in message. Skipping.")
         return
 
-    # Fetch the user's email from User Service
+   
     try:
         response = requests.get(USER_SERVICE_URL.format(user_id=user_id))
         response.raise_for_status()
