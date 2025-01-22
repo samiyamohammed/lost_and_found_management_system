@@ -96,15 +96,6 @@ The application consists of three main microservices:
 - Asynchronous notifications for matched items.  
 - Integration with external services (e.g., email/SMS).
 
-**Database Entities:**  
-- `Notifications`  
-- `UserNotifications`
-
-**APIs:**  
-- `POST /notifications/send`: Send a notification.  
-- `GET /notifications/user/<id>`: Retrieve notifications for a specific user.  
-- `DELETE /notifications/<id>`: Clear a notification by ID.
-
 ---
 
 ## Deployment Notes
