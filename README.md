@@ -24,7 +24,7 @@ The application consists of three main microservices:
 3. **Notification Service**: Sends notifications to users regarding items that match their search criteria or updates on reported items.
 ## Microservices Architecture
 
-<img src="microservice.jpg" alt="Example Image" width="400"/>
+<img src="photo_5805514454169930020_x.jpg" alt="Example Image" width="400"/>
 ## Technologies Used
 
 - **Django REST Framework**: For building the APIs.
