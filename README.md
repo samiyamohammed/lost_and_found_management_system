@@ -72,9 +72,6 @@ The application consists of three main microservices:
 - Filtering by item type, date, and location.  
 - Matching logic for lost and found items.
 
-**Database Entities:**  
-- `Items`  
-- `ItemCategories`
 
 **APIs:**  
 - `POST /items`: Report a new lost or found item.  
